@@ -1,0 +1,1645 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI-Powered DeFi Analyst Roadmap 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Sora:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0d14;
+    --surface: #0f1520;
+    --surface2: #141c2e;
+    --border: #1e2d47;
+    --accent: #00e5ff;
+    --accent2: #7c3aed;
+    --accent3: #10b981;
+    --gold: #f59e0b;
+    --danger: #ef4444;
+    --text: #e2e8f0;
+    --muted: #64748b;
+    --mono: 'Space Mono', monospace;
+    --sans: 'Sora', sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: var(--sans);
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* GRID NOISE TEXTURE */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0,229,255,0.015) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,229,255,0.015) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* HERO */
+  .hero {
+    position: relative;
+    padding: 80px 24px 60px;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -100px; left: 50%;
+    transform: translateX(-50%);
+    width: 600px; height: 400px;
+    background: radial-gradient(ellipse, rgba(0,229,255,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-tag {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--accent);
+    border: 1px solid rgba(0,229,255,0.3);
+    padding: 4px 12px;
+    border-radius: 2px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    animation: fadeInDown 0.6s ease;
+  }
+
+  .hero h1 {
+    font-size: clamp(28px, 5vw, 52px);
+    font-weight: 800;
+    line-height: 1.15;
+    margin-bottom: 16px;
+    animation: fadeInDown 0.7s ease;
+  }
+
+  .hero h1 span.cyan { color: var(--accent); }
+  .hero h1 span.purple { color: #a78bfa; }
+
+  .hero-sub {
+    font-size: 15px;
+    color: var(--muted);
+    max-width: 560px;
+    margin: 0 auto 36px;
+    animation: fadeInDown 0.8s ease;
+    font-weight: 300;
+  }
+
+  .hero-stats {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    animation: fadeInDown 0.9s ease;
+  }
+
+  .stat-pill {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-family: var(--mono);
+    font-size: 12px;
+  }
+
+  .stat-pill span { color: var(--accent); font-weight: 700; }
+
+  /* NAV */
+  .phase-nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(10,13,20,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 24px;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  .phase-nav-inner {
+    display: flex;
+    gap: 0;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .nav-btn {
+    background: none;
+    border: none;
+    color: var(--muted);
+    font-family: var(--mono);
+    font-size: 11px;
+    padding: 14px 16px;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+  }
+
+  .nav-btn:hover, .nav-btn.active {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+  }
+
+  /* MAIN CONTENT */
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 24px 80px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* SECTION DIVIDERS */
+  .section-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin: 60px 0 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* PHASE CARDS */
+  .phase-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    margin-bottom: 16px;
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+
+  .phase-card:hover { border-color: rgba(0,229,255,0.3); }
+
+  .phase-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 20px 24px;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .phase-badge {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 3px;
+    flex-shrink: 0;
+    letter-spacing: 1px;
+  }
+
+  .badge-0 { background: rgba(100,116,139,0.2); color: #94a3b8; border: 1px solid #334155; }
+  .badge-1 { background: rgba(0,229,255,0.1); color: var(--accent); border: 1px solid rgba(0,229,255,0.3); }
+  .badge-2 { background: rgba(16,185,129,0.1); color: var(--accent3); border: 1px solid rgba(16,185,129,0.3); }
+  .badge-3 { background: rgba(124,58,237,0.15); color: #a78bfa; border: 1px solid rgba(124,58,237,0.4); }
+  .badge-4 { background: rgba(245,158,11,0.1); color: var(--gold); border: 1px solid rgba(245,158,11,0.3); }
+  .badge-5 { background: rgba(239,68,68,0.1); color: #f87171; border: 1px solid rgba(239,68,68,0.3); }
+
+  .phase-title-block { flex: 1 }
+  .phase-title-block h3 { font-size: 16px; font-weight: 700; }
+  .phase-title-block p { font-size: 12px; color: var(--muted); margin-top: 2px; font-weight: 300; }
+
+  .phase-meta {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  .duration-tag {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    background: var(--surface2);
+    padding: 4px 10px;
+    border-radius: 3px;
+    border: 1px solid var(--border);
+  }
+
+  .toggle-icon {
+    color: var(--muted);
+    font-size: 18px;
+    transition: transform 0.3s;
+    font-family: var(--mono);
+  }
+
+  .phase-card.open .toggle-icon { transform: rotate(180deg); }
+
+  .phase-body {
+    display: none;
+    padding: 0 24px 24px;
+    border-top: 1px solid var(--border);
+  }
+
+  .phase-card.open .phase-body { display: block; }
+
+  /* PHASE BODY ELEMENTS */
+  .goal-box {
+    background: var(--surface2);
+    border-left: 3px solid var(--accent);
+    padding: 14px 16px;
+    border-radius: 0 6px 6px 0;
+    margin: 20px 0 16px;
+    font-size: 14px;
+  }
+
+  .goal-box strong {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 2px;
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin: 16px 0;
+  }
+
+  @media (max-width: 600px) { .grid-2 { grid-template-columns: 1fr; } }
+
+  .sub-card {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 14px 16px;
+  }
+
+  .sub-card h4 {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  .sub-card ul { list-style: none; }
+  .sub-card ul li {
+    font-size: 13px;
+    padding: 3px 0;
+    color: #cbd5e1;
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .sub-card ul li::before {
+    content: '▸';
+    color: var(--accent);
+    flex-shrink: 0;
+    font-size: 10px;
+    margin-top: 2px;
+  }
+
+  .resource-tag {
+    display: inline-block;
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 3px;
+    margin: 2px;
+    font-family: var(--mono);
+  }
+
+  .tag-free { background: rgba(16,185,129,0.12); color: var(--accent3); border: 1px solid rgba(16,185,129,0.2); }
+  .tag-paid { background: rgba(245,158,11,0.1); color: var(--gold); border: 1px solid rgba(245,158,11,0.2); }
+  .tag-tool { background: rgba(0,229,255,0.08); color: var(--accent); border: 1px solid rgba(0,229,255,0.2); }
+  .tag-doc { background: rgba(124,58,237,0.1); color: #a78bfa; border: 1px solid rgba(124,58,237,0.2); }
+
+  .resource-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(30,45,71,0.6);
+    gap: 8px;
+  }
+
+  .resource-item:last-child { border-bottom: none; }
+  .resource-item .name { font-size: 13px; color: #cbd5e1; flex: 1; }
+  .resource-item .desc { font-size: 11px; color: var(--muted); margin-top: 2px; }
+
+  .project-card {
+    background: linear-gradient(135deg, rgba(0,229,255,0.04), rgba(124,58,237,0.04));
+    border: 1px solid rgba(0,229,255,0.15);
+    border-radius: 6px;
+    padding: 14px 16px;
+    margin: 8px 0;
+  }
+
+  .project-card .proj-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--accent);
+    margin-bottom: 4px;
+  }
+
+  .project-card p { font-size: 13px; color: #94a3b8; }
+
+  .milestone-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 0;
+    font-size: 13px;
+    border-bottom: 1px solid rgba(30,45,71,0.5);
+  }
+
+  .milestone-row:last-child { border-bottom: none; }
+
+  .check-icon {
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    border: 1px solid var(--accent3);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    font-size: 10px;
+    color: var(--accent3);
+  }
+
+  /* SPECIAL SECTIONS */
+  .tools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 12px;
+    margin: 16px 0;
+  }
+
+  .tool-card {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 16px;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+
+  .tool-card:hover {
+    border-color: rgba(0,229,255,0.3);
+    transform: translateY(-2px);
+  }
+
+  .tool-card .tool-name {
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 6px;
+  }
+
+  .tool-card .tool-use {
+    font-size: 11px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  .tool-card .tool-tier {
+    font-size: 10px;
+    margin-top: 8px;
+    padding: 2px 6px;
+    border-radius: 2px;
+    display: inline-block;
+  }
+
+  .tier-must { background: rgba(239,68,68,0.15); color: #f87171; }
+  .tier-rec { background: rgba(245,158,11,0.1); color: var(--gold); }
+  .tier-adv { background: rgba(124,58,237,0.1); color: #a78bfa; }
+
+  .warning-box {
+    background: rgba(239,68,68,0.06);
+    border: 1px solid rgba(239,68,68,0.25);
+    border-radius: 6px;
+    padding: 16px 20px;
+    margin: 16px 0;
+    font-size: 13px;
+    color: #fca5a5;
+  }
+
+  .warning-box strong {
+    color: var(--danger);
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 2px;
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  .warning-box ul { list-style: none; padding-left: 0; }
+  .warning-box ul li { padding: 3px 0; display: flex; gap: 8px; align-items: flex-start; }
+  .warning-box ul li::before { content: '⚠'; flex-shrink: 0; }
+
+  .tip-box {
+    background: rgba(16,185,129,0.05);
+    border: 1px solid rgba(16,185,129,0.2);
+    border-radius: 6px;
+    padding: 14px 18px;
+    margin: 12px 0;
+    font-size: 13px;
+  }
+
+  .tip-box strong {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--accent3);
+    letter-spacing: 2px;
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  .timeline-summary {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    margin: 16px 0;
+  }
+
+  .timeline-row {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    border-bottom: 1px solid var(--border);
+    gap: 16px;
+    font-size: 13px;
+  }
+
+  .timeline-row:last-child { border-bottom: none; }
+
+  .tl-phase {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 700;
+    width: 70px;
+    flex-shrink: 0;
+  }
+
+  .tl-name { flex: 1; color: #cbd5e1; }
+
+  .tl-duration {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    width: 80px;
+    text-align: right;
+    flex-shrink: 0;
+  }
+
+  .tl-bar-wrap {
+    width: 100px;
+    height: 6px;
+    background: rgba(30,45,71,0.8);
+    border-radius: 3px;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+
+  .tl-bar {
+    height: 100%;
+    border-radius: 3px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+  }
+
+  /* SKILL IMMUNE */
+  .immune-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  @media (max-width: 500px) { .immune-grid { grid-template-columns: 1fr; } }
+
+  .immune-card {
+    background: var(--surface2);
+    border: 1px solid rgba(16,185,129,0.2);
+    border-radius: 6px;
+    padding: 14px;
+  }
+
+  .immune-card .ic-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--accent3);
+    margin-bottom: 6px;
+  }
+
+  .immune-card p { font-size: 12px; color: var(--muted); line-height: 1.5; }
+
+  /* FOOTER */
+  .footer {
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    padding: 40px 24px;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .footer p { font-size: 12px; color: var(--muted); }
+  .footer strong { color: var(--accent); font-family: var(--mono); }
+
+  /* ANIMS */
+  @keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .fade-in {
+    animation: fadeInDown 0.5s ease both;
+  }
+
+  /* SCROLLBAR */
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+  /* ===================== MOBILE ===================== */
+  @media (max-width: 640px) {
+
+    /* Hero */
+    .hero {
+      padding: 48px 16px 36px;
+    }
+    .hero-sub {
+      font-size: 13px;
+    }
+    .stat-pill {
+      font-size: 11px;
+      padding: 6px 10px;
+    }
+
+    /* Nav — smaller tap targets but still scrollable */
+    .phase-nav {
+      padding: 0 8px;
+    }
+    .nav-btn {
+      font-size: 10px;
+      padding: 12px 10px;
+      letter-spacing: 0;
+    }
+
+    /* Container */
+    .container {
+      padding: 0 12px 60px;
+    }
+
+    /* Section label */
+    .section-label {
+      font-size: 9px;
+      letter-spacing: 2px;
+      margin: 40px 0 16px;
+    }
+
+    /* Phase header — stack vertically on tiny screens */
+    .phase-header {
+      padding: 14px 14px;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .phase-badge {
+      font-size: 10px;
+      padding: 3px 8px;
+    }
+    .phase-title-block h3 {
+      font-size: 14px;
+    }
+    .phase-title-block p {
+      font-size: 11px;
+    }
+    /* Move duration + toggle to second row on very small screens */
+    .phase-meta {
+      width: 100%;
+      justify-content: flex-end;
+      margin-top: -4px;
+    }
+    .duration-tag {
+      font-size: 10px;
+      padding: 3px 8px;
+    }
+
+    /* Phase body */
+    .phase-body {
+      padding: 0 12px 16px;
+    }
+
+    /* Goal box */
+    .goal-box {
+      font-size: 13px;
+      padding: 12px 12px;
+      margin: 14px 0 12px;
+    }
+
+    /* Sub cards */
+    .sub-card {
+      padding: 12px 12px;
+    }
+    .sub-card ul li {
+      font-size: 12px;
+    }
+
+    /* Grids — all 1 column on mobile */
+    .grid-2,
+    .immune-grid {
+      grid-template-columns: 1fr;
+    }
+    .tools-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    /* Resource items — stack tag below text */
+    .resource-item {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 6px;
+    }
+    .resource-item .name {
+      font-size: 12px;
+    }
+    .resource-item .desc {
+      font-size: 11px;
+    }
+
+    /* Project cards */
+    .project-card {
+      padding: 12px 12px;
+    }
+    .project-card .proj-title {
+      font-size: 13px;
+    }
+    .project-card p {
+      font-size: 12px;
+    }
+
+    /* Milestone rows */
+    .milestone-row {
+      font-size: 12px;
+      gap: 10px;
+    }
+
+    /* Timeline — hide bar on mobile, keep text info */
+    .tl-bar-wrap {
+      display: none;
+    }
+    .timeline-row {
+      padding: 10px 14px;
+      gap: 10px;
+    }
+    .tl-phase {
+      width: 56px;
+      font-size: 10px;
+    }
+    .tl-name {
+      font-size: 12px;
+    }
+    .tl-duration {
+      width: auto;
+      font-size: 10px;
+    }
+
+    /* Tools grid — 2 col is fine on mobile */
+    .tool-card {
+      padding: 12px;
+    }
+    .tool-card .tool-name {
+      font-size: 12px;
+    }
+    .tool-card .tool-use {
+      font-size: 10px;
+    }
+
+    /* Warning / tip boxes */
+    .warning-box,
+    .tip-box {
+      padding: 12px 14px;
+      font-size: 12px;
+    }
+    .warning-box ul li,
+    .tip-box p {
+      font-size: 12px;
+    }
+
+    /* Footer */
+    .footer {
+      padding: 28px 16px;
+    }
+  }
+
+  /* Extra small — single column tools grid */
+  @media (max-width: 380px) {
+    .tools-grid {
+      grid-template-columns: 1fr;
+    }
+    .hero h1 {
+      font-size: 26px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-tag">Roadmap 2026</div>
+  <h1>
+    <span class="cyan">AI-Powered</span><br>
+    <span class="purple">DeFi Analyst</span>
+  </h1>
+  <p class="hero-sub">Dari pemula menuju Junior AI-Powered DeFi Analyst yang bisa membuat riset berkualitas dan punya portfolio — didesain untuk kamu yang berbasis di Indonesia.</p>
+  <div class="hero-stats">
+    <div class="stat-pill">Total: <span>~12–18 bulan</span></div>
+    <div class="stat-pill">Pace: <span>10–15 jam/minggu</span></div>
+    <div class="stat-pill">6 Fase</div>
+    <div class="stat-pill">Biaya: <span>Low-cost friendly</span></div>
+  </div>
+</div>
+
+<!-- STICKY NAV -->
+<nav class="phase-nav">
+  <div class="phase-nav-inner">
+    <button class="nav-btn active" onclick="scrollTo('overview')">Overview</button>
+    <button class="nav-btn" onclick="scrollTo('phase0')">Fase 0</button>
+    <button class="nav-btn" onclick="scrollTo('phase1')">Fase 1</button>
+    <button class="nav-btn" onclick="scrollTo('phase2')">Fase 2</button>
+    <button class="nav-btn" onclick="scrollTo('phase3')">Fase 3</button>
+    <button class="nav-btn" onclick="scrollTo('phase4')">Fase 4</button>
+    <button class="nav-btn" onclick="scrollTo('phase5')">Fase 5</button>
+    <button class="nav-btn" onclick="scrollTo('extras')">Extras</button>
+  </div>
+</nav>
+
+<!-- MAIN -->
+<div class="container">
+
+  <!-- OVERVIEW -->
+  <div id="overview">
+    <div class="section-label">Overview Timeline</div>
+
+    <div class="warning-box">
+      <strong>⚠ RISK DISCLAIMER — BACA INI DULU</strong>
+      <ul>
+        <li>DeFi mengandung risiko: smart contract bugs, rug pull, exploit, likuidasi, dan volatilitas ekstrem.</li>
+        <li>Selalu mulai dengan modal kecil yang kamu siap kehilangan 100%.</li>
+        <li>Gunakan testnet terlebih dahulu sebelum live di mainnet.</li>
+        <li>Jangan pernah invest lebih dari yang kamu mampu rugi.</li>
+        <li>Roadmap ini untuk tujuan edukasi dan karir — bukan financial advice.</li>
+      </ul>
+    </div>
+
+    <div class="timeline-summary">
+      <div class="timeline-row">
+        <div class="tl-phase" style="color:#94a3b8">FASE 0</div>
+        <div class="tl-name">Foundations</div>
+        <div class="tl-duration">1–2 bln</div>
+        <div class="tl-bar-wrap"><div class="tl-bar" style="width:11%"></div></div>
+      </div>
+      <div class="timeline-row">
+        <div class="tl-phase" style="color:var(--accent)">FASE 1</div>
+        <div class="tl-name">AI for DeFi Research</div>
+        <div class="tl-duration">2–3 bln</div>
+        <div class="tl-bar-wrap"><div class="tl-bar" style="width:17%"></div></div>
+      </div>
+      <div class="timeline-row">
+        <div class="tl-phase" style="color:var(--accent3)">FASE 2</div>
+        <div class="tl-name">Tools & Workflow Hybrid</div>
+        <div class="tl-duration">2–3 bln</div>
+        <div class="tl-bar-wrap"><div class="tl-bar" style="width:17%"></div></div>
+      </div>
+      <div class="timeline-row">
+        <div class="tl-phase" style="color:#a78bfa">FASE 3</div>
+        <div class="tl-name">Data & On-Chain Intelligence</div>
+        <div class="tl-duration">2–3 bln</div>
+        <div class="tl-bar-wrap"><div class="tl-bar" style="width:17%"></div></div>
+      </div>
+      <div class="timeline-row">
+        <div class="tl-phase" style="color:var(--gold)">FASE 4</div>
+        <div class="tl-name">DeFAI & AI Agents</div>
+        <div class="tl-duration">2–3 bln</div>
+        <div class="tl-bar-wrap"><div class="tl-bar" style="width:17%"></div></div>
+      </div>
+      <div class="timeline-row">
+        <div class="tl-phase" style="color:#f87171">FASE 5</div>
+        <div class="tl-name">Advanced & Portfolio Building</div>
+        <div class="tl-duration">2–3 bln</div>
+        <div class="tl-bar-wrap"><div class="tl-bar" style="width:17%"></div></div>
+      </div>
+    </div>
+
+    <div class="tip-box">
+      <strong>💡 MINDSET</strong>
+      Roadmap ini <em>non-linear</em>. Kamu bisa paralel belajar beberapa hal sekaligus. Yang penting: <strong>selalu praktik > teori</strong>. Setiap fase punya proyek nyata karena portfolio > sertifikat.
+    </div>
+  </div>
+
+  <!-- ========== FASE 0 ========== -->
+  <div id="phase0">
+    <div class="section-label">Fase 0</div>
+    <div class="phase-card open">
+      <div class="phase-header" onclick="togglePhase(this)">
+        <div class="phase-badge badge-0">FASE 0</div>
+        <div class="phase-title-block">
+          <h3>Foundations</h3>
+          <p>Refresh DeFi + Dasar AI & Prompt Engineering</p>
+        </div>
+        <div class="phase-meta">
+          <div class="duration-tag">1–2 bulan</div>
+          <div class="toggle-icon">▾</div>
+        </div>
+      </div>
+      <div class="phase-body">
+        <div class="goal-box">
+          <strong>TUJUAN FASE</strong>
+          Kamu solid di DeFi fundamentals (protocols, tokenomics, liquidity, risk) dan punya foundation AI: memahami cara kerja LLM, bisa prompt engineering dengan baik, dan tahu tools AI mana yang relevan untuk kerjaan analyst.
+        </div>
+
+        <div class="grid-2">
+          <div class="sub-card">
+            <h4>DeFi Refresh</h4>
+            <ul>
+              <li>AMM, liquidity pools, impermanent loss</li>
+              <li>Lending/borrowing (Aave, Compound)</li>
+              <li>Yield farming, staking, LST/LRT</li>
+              <li>Bridge & cross-chain mechanics</li>
+              <li>Stablecoins (algo vs collateralized)</li>
+              <li>Tokenomics: supply, emissions, vesting</li>
+              <li>TVL, APY/APR beda apa?</li>
+              <li>DeFi risk taxonomy (smart contract, liquidity, oracle)</li>
+            </ul>
+          </div>
+          <div class="sub-card">
+            <h4>Dasar AI & LLM</h4>
+            <ul>
+              <li>Cara kerja LLM (token, context window)</li>
+              <li>Prompt engineering fundamentals</li>
+              <li>Chain-of-thought prompting</li>
+              <li>System prompt vs user prompt</li>
+              <li>Limitations AI: hallucination, cutoff</li>
+              <li>Pilihan model: Claude vs GPT vs Gemini</li>
+              <li>API basics (apa itu API call?)</li>
+              <li>AI tools landscape 2026</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="sub-card" style="margin:12px 0">
+          <h4>Resources Terbaik</h4>
+          <div class="resource-item">
+            <div><div class="name">Finematics YouTube</div><div class="desc">Penjelasan visual DeFi concepts — gratis, bahasa Inggris jelas</div></div>
+            <span class="resource-tag tag-free">FREE</span>
+          </div>
+          <div class="resource-item">
+            <div><div class="name">DeFi Llama Docs</div><div class="desc">Baca glossary & methodology — biasakan baca dokumentasi</div></div>
+            <span class="resource-tag tag-doc">DOCS</span>
+          </div>
+          <div class="resource-item">
+            <div><div class="name">Anthropic Prompt Engineering Guide</div><div class="desc">docs.anthropic.com/en/docs/build-with-claude/prompt-engineering</div></div>
+            <span class="resource-tag tag-free">FREE</span>
+          </div>
+          <div class="resource-item">
+            <div><div class="name">Learnprompting.org</div><div class="desc">Panduan prompt engineering interaktif, dari basic ke advanced</div></div>
+            <span class="resource-tag tag-free">FREE</span>
+          </div>
+          <div class="resource-item">
+            <div><div class="name">Bankless YouTube/Podcast</div><div class="desc">News DeFi terkini, bagus untuk update narasi pasar</div></div>
+            <span class="resource-tag tag-free">FREE</span>
+          </div>
+          <div class="resource-item">
+            <div><div class="name">The DeFi Educator (Twitter/X)</div><div class="desc">Thread-thread edukatif tentang protokol baru</div></div>
+            <span class="resource-tag tag-free">FREE</span>
+          </div>
+        </div>
+
+        <div class="sub-card" style="margin:12px 0">
+          <h4>Proyek Praktik</h4>
+        </div>
+        <div class="project-card">
+          <div class="proj-title">🔬 Proyek 0-A: DeFi Protocol Teardown</div>
+          <p>Pilih 1 protokol (misal: Aave v3). Gunakan Claude untuk bantu kamu bikin "protocol deep-dive" — tokenomics, revenue model, risk factors, TVL history. Output: dokumen 2–3 halaman. Ini latihan prompt engineering sekaligus DeFi research.</p>
+        </div>
+        <div class="project-card">
+          <div class="proj-title">🤖 Proyek 0-B: Prompt Engineering DeFi Bot</div>
+          <p>Buat system prompt yang menjadikan Claude sebagai "DeFi Research Assistant" pribadi kamu. Uji dengan 20 pertanyaan berbeda, iterasi promptnya. Simpan ke Notion sebagai template.</p>
+        </div>
+
+        <div class="sub-card" style="margin:12px 0">
+          <h4>Milestone Checklist</h4>
+          <div class="milestone-row"><div class="check-icon">✓</div>Bisa jelasin impermanent loss ke orang awam tanpa baca catatan</div>
+          <div class="milestone-row"><div class="check-icon">✓</div>Bisa bedain APY vs APR dan hitung yield sederhana</div>
+          <div class="milestone-row"><div class="check-icon">✓</div>Punya system prompt DeFi assistant yang bisa dipakai ulang</div>
+          <div class="milestone-row"><div class="check-icon">✓</div>Selesaikan minimal 1 protocol deep-dive pakai AI</div>
+          <div class="milestone-row"><div class="check-icon">✓</div>Paham apa itu hallucination dan cara mitigasinya</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== FASE 1 ========== -->
+  <div id="phase1">
+    <div class="section-label">Fase 1</div>
+    <div class="phase-card">
+      <div class="phase-header" onclick="togglePhase(this)">
+        <div class="phase-badge badge-1">FASE 1</div>
+        <div class="phase-title-block">
+          <h3>AI for DeFi Research & Analysis</h3>
+          <p>Prompt engineering khusus DeFi, AI untuk riset protokol, tokenomics, on-chain data</p>
+        </div>
+        <div class="phase-meta">
+          <div class="duration-tag">2–3 bulan</div>
+          <div class="toggle-icon">▾</div>
+        </div>
+      </div>
+      <div class="phase-body">
+        <div class="goal-box" style="border-left-color: var(--accent)">
+          <strong>TUJUAN FASE</strong>
+          Kamu bisa menggunakan AI secara sistematis untuk riset DeFi: analisis protokol, penilaian tokenomics, identifikasi risiko, dan interpretasi on-chain metrics — menghasilkan riset report yang bisa dikonsumsi publik.
+        </div>
+
+        <div class="grid-2">
+          <div class="sub-card">
+            <h4>Advanced Prompt Engineering</h4>
+            <ul>
+              <li>Structured output prompting (JSON, tabel)</li>
+              <li>Role prompting untuk analyst persona</li>
+              <li>Multi-step reasoning chains</li>
+              <li>Fact-checking workflow dengan AI</li>
+              <li>Comparative analysis prompts</li>
+              <li>Prompt untuk tokenomics scoring</li>
+              <li>Risk assessment frameworks via AI</li>
+            </ul>
+          </div>
+          <div class="sub-card">
+            <h4>DeFi Analysis Framework</h4>
+            <ul>
+              <li>Protocol Revenue vs Token Value accrual</li>
+              <li>Fully Diluted Valuation (FDV) analysis</li>
+              <li>Whale wallet tracking basics</li>
+              <li>Liquidity concentration risk</li>
+              <li>Governance token analysis</li>
+              <li>Competitor benchmarking</li>
+              <li>Narrative & catalyst identification</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="sub-card" style="margin:12px 0">
+          <h4>Resources Terbaik</h4>
+          <div class="resource-item">
+            <div><div class="name">Messari Research (gratis tier)</div><div class="desc">Baca format riset profesional, tirukan strukturnya dengan AI</div></div>
+            <span class="resource-tag tag-free">FREE</span>
+          </div>
+          <div class="resource-item">
+            <div><div class="name">Chaos Labs Risk Docs</div><div class="desc">Risk framework untuk DeFi protocols — sangat valuable</div></div>
+            <span class="resource-tag tag-doc">DOCS</span>
+          </div>
+          <div class="resource-item">
+            <div><div class="name">Token Terminal</div><div class="desc">Revenue, fees, P/S ratio untuk protokol — gratis tier cukup</div></div>
+            <span class="resource-tag tag-free">FREE</span>
+          </div>
+          <div class="resource-item">
+            <div><div class="name">Deep Dive with Ignas (Substack)</div><div class="desc">Contoh bagus riset DeFi berkualitas, bisa jadikan benchmark</div></div>
+            <span class="resource-tag tag-free">FREE</span>
+          </div>
+          <div class="resource-item">
+            <div><div class="name">Claude Projects (claude.ai)</div><div class="desc">Gunakan Projects untuk maintain konteks riset jangka panjang</div></div>
+            <span class="resource-tag tag-tool">TOOL</span>
+          </div>
+        </div>
+
+        <div class="sub-card" style="margin:12px 0">
+          <h4>Proyek Praktik</h4>
+        </div>
+        <div class="project-card">
+          <div class="proj-title">📊 Proyek 1-A: DeFi Research Report Pertamamu</div>
+          <p>Tulis riset lengkap tentang 1 protokol mid-cap (misal: Pendle Finance, EigenLayer, atau yang sedang trending). Format: Executive Summary, Protocol Overview, Tokenomics Analysis, Risk Factors, Outlook. Gunakan AI sebagai research partner — bukan penulis. Publish di Mirror.xyz atau Medium.</p>
+        </div>
+        <div class="project-card">
+          <div class="proj-title">⚖️ Proyek 1-B: Tokenomics Scoring Framework</div>
+          <p>Buat scoring system untuk evaluasi tokenomics (0–100). Parameter: supply schedule, value accrual, governance power, vesting, unlock schedule. Gunakan Claude untuk refine framework-nya. Apply ke 3 protokol berbeda. Publish hasilnya.</p>
+        </div>
+
+        <div class="sub-card" style="margin:12px 0">
+          <h4>Milestone Checklist</h4>
+          <div class="milestone-row"><div class="check-icon">✓</div>Punya riset report published yang bisa dikasih ke orang lain</div>
+          <div class="milestone-row"><div class="check-icon">✓</div>Bisa identifikasi red flag tokenomics dalam 15 menit</div>
+          <div class="milestone-row"><div class="check-icon">✓</div>Punya personal tokenomics scoring framework</div>
+          <div class="milestone-row"><div class="check-icon">✓</div>Bisa bedain narasi vs fundamentals dalam penilaian protokol</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== FASE 2 ========== -->
+  <div id="phase2">
+    <div class="section-label">Fase 2</div>
+    <div class="phase-card">
+      <div class="phase-header" onclick="togglePhase(this)">
+        <div class="phase-badge badge-2">FASE 2</div>
+        <div class="phase-title-block">
+          <h3>Tools & Workflow Hybrid</h3>
+          <p>DeFiLlama + Dune + AI tools, membuat AI analyst workflow</p>
+        </div>
+        <div class="phase-meta">
+          <div class="duration-tag">2–3 bulan</div>
+          <div class="toggle-icon">▾</div>
+        </div>
+      </div>
+      <div class="phase-body">
+        <div class="goal-box" style="border-left-color: var(--accent3)">
+          <strong>TUJUAN FASE</strong>
+          Kamu punya workflow analyst yang efisien: DeFiLlama untuk TVL/revenue tracking, Dune untuk query on-chain data, dan AI untuk interpretasi & narrative building. Target: bisa produksi 1 riset / week.
+        </div>
+
+        <div class="grid-2">
+          <div class="sub-card">
+            <h4>DeFiLlama Mastery</h4>
+            <ul>
+              <li>TVL breakdown per chain & per protocol</li>
+              <li>Fees & Revenue tracking</li>
+              <li>DEX volume analytics</li>
+              <li>Stablecoin flows (peg monitoring)</li>
+              <li>Yield & Borrow rates</li>
+              <li>Bridge volume data</li>
+              <li>Correlation analysis antar protokol</li>
+            </ul>
+          </div>
+          <div class="sub-card">
+            <h4>Dune Analytics Basics</h4>
+            <ul>
+              <li>Interface Dune: Tables, queries, dashboards</li>
+              <li>Fork queries yang sudah ada</li>
+              <li>Wizard AI di Dune (SQL dari natural language)</li>
+              <li>Nansen-style wallet labeling</li>
+              <li>Volume, fees, user metrics</li>
+              <li>Compare protokol dalam 1 dashboard</li>
+              <li>Share & embed dashboards</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="sub-card" style="margin:12px 0">
+          <h4>AI Workflow Integration</h4>
+          <ul>
+            <li>Cara "pipe" data dari DeFiLlama ke Claude untuk interpretasi</li>
+            <li>Gunakan Perplexity untuk news aggregation + fact-check cepat</li>
+            <li>Notion AI untuk dokumen management & templates</li>
+            <li>Grok (X/Twitter) untuk sentiment & alpha feeds</li>
+            <li>NotebookLM untuk synthesize multiple research sources</li>
+          </ul>
+        </div>
+
+        <div class="sub-card" style="margin:12px 0">
+          <h4>Resources Terbaik</h4>
+          <div class="resource-item">
+            <div><div class="name">Dune Learn (dune.com/learn)</div><div class="desc">Tutorial resmi Dune, dari intro sampai intermediate SQL</div></div>
+            <span class="resource-tag tag-free">FREE</span>
+          </div>
+          <div class="resource-item">
+            <div><div class="name">@rchen8 di Twitter/X</div><div class="desc">Contoh Dune dashboards berkualitas untuk dipelajari strukturnya</div></div>
+            <span class="resource-tag tag-free">FREE</span>
+          </div>
+          <div class="resource-item">
+            <div><div class="name">DeFiLlama Docs & API</div><div class="desc">Pelajari API endpoint untuk automasi data pull</div></div>
+            <span class="resource-tag tag-doc">DOCS</span>
+          </div>
+          <div class="resource-item">
+            <div><div class="name">Nansen YouTube Channel</div><div class="desc">Tutorial on-chain analysis — wallet segmentation, smart money tracking</div></div>
+            <span class="resource-tag tag-free">FREE</span>
+          </div>
+          <div class="resource-item">
+            <div><div class="name">Perplexity Pro (opsional)</div><div class="desc">~$20/bln — untuk riset dengan sumber real-time yang ter-cite</div></div>
+            <span class="resource-tag tag-paid">PAID</span>
+          </div>
+        </div>
+
+        <div class="sub-card" style="margin:12px 0">
+          <h4>Proyek Praktik</h4>
+        </div>
+        <div class="project-card">
+          <div class="proj-title">📈 Proyek 2-A: DeFi Sector Dashboard</div>
+          <p>Buat Dune dashboard yang compare 3 protokol dalam 1 sektor (misal: 3 DEX terbesar di Ethereum). Metrics: volume, fees, users, TVL. Fork query yang ada, modifikasi. Share dashboard-nya — ini portfolio item yang solid.</p>
+        </div>
+        <div class="project-card">
+          <div class="proj-title">⚙️ Proyek 2-B: Personal DeFi Research Workflow</div>
+          <p>Dokumentasikan workflow lengkap risetmu dalam Notion: dari idea → DeFiLlama check → Dune data → AI interpretation → report draft. Buat template yang bisa kamu repeat tiap minggu. Ini bukti kamu sistematis — disukai employer.</p>
+        </div>
+
+        <div class="sub-card" style="margin:12px 0">
+          <h4>Milestone Checklist</h4>
+          <div class="milestone-row"><div class="check-icon">✓</div>Punya public Dune dashboard dengan 5+ charts</div>
+          <div class="milestone-row"><div class="check-icon">✓</div>Bisa pull data DeFiLlama dan interpretasi dalam <10 menit</div>
+          <div class="milestone-row"><div class="check-icon">✓</div>Workflow riset terdokumentasi dan repeatable</div>
+          <div class="milestone-row"><div class="check-icon">✓</div>Produksi 1 riset/week secara konsisten selama 1 bulan</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== FASE 3 ========== -->
+  <div id="phase3">
+    <div class="section-label">Fase 3</div>
+    <div class="phase-card">
+      <div class="phase-header" onclick="togglePhase(this)">
+        <div class="phase-badge badge-3">FASE 3</div>
+        <div class="phase-title-block">
+          <h3>Data & On-Chain Intelligence</h3>
+          <p>SQL di Dune, Python dasar untuk data, AI agents sederhana</p>
+        </div>
+        <div class="phase-meta">
+          <div class="duration-tag">2–3 bulan</div>
+          <div class="toggle-icon">▾</div>
+        </div>
+      </div>
+      <div class="phase-body">
+        <div class="goal-box" style="border-left-color: #a78bfa">
+          <strong>TUJUAN FASE</strong>
+          Kamu bisa nulis SQL sendiri di Dune, pull data on-chain dengan Python (pakai AI bantuin coding-nya), dan bikin AI agent sederhana yang automasi bagian dari workflow riset kamu.
+        </div>
+
+        <div class="tip-box">
+          <strong>💡 UNTUK NON-CODER SEPERTI KAMU</strong>
+          Gunakan Claude/Cursor untuk bantu nulis SQL dan Python. Fokus pada <em>pemahaman logika</em> — kamu harus bisa baca kode, modifikasi, dan debug dengan bantuan AI. Tidak harus hafal syntax. Ini adalah "AI-assisted coding" skill yang sangat valuable di 2026.
+        </div>
+
+        <div class="grid-2">
+          <div class="sub-card">
+            <h4>SQL untuk On-Chain Data</h4>
+            <ul>
+              <li>SELECT, WHERE, GROUP BY, ORDER BY</li>
+              <li>JOIN antar tabel (transactions + prices)</li>
+              <li>Window functions (running total, rank)</li>
+              <li>CTEs (WITH clause) untuk query kompleks</li>
+              <li>Dune Spellbook tables</li>
+              <li>Time-series aggregation</li>
+              <li>Wallet cohort analysis via SQL</li>
+            </ul>
+          </div>
+          <div class="sub-card">
+            <h4>Python Dasar untuk Data</h4>
+            <ul>
+              <li>Pandas: load, clean, filter data</li>
+              <li>Requests: API calls (DeFiLlama API)</li>
+              <li>Matplotlib/Plotly: basic charts</li>
+              <li>Jupyter Notebook workflow</li>
+              <li>DuneClient Python library</li>
+              <li>Web3.py basics (read-only)</li>
+              <li>Automasi report sederhana dengan Python</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="sub-card" style="margin:12px 0">
+          <h4>AI Agents Sederhana</h4>
+          <ul>
+            <li>Apa itu AI agent? (LLM + tools + loop)</li>
+            <li>Claude API: basic integration</li>
+            <li>Build simple agent: DeFi data fetcher + interpreter</li>
+            <li>LangChain basics (opsional tapi valuable)</li>
+            <li>Scheduled agents: cron job + Python + LLM</li>
+          </ul>
+        </div>
+
+        <div class="sub-card" style="margin:12px 0">
+          <h4>Resources Terbaik</h4>
+          <div class="resource-item">
+            <div><div class="name">Mode Analytics SQL Tutorial</div><div class="desc">SQL untuk analysts — jelas, structured, gratis</div></div>
+            <span class="resource-tag tag-free">FREE</span>
+          </div>
+          <div class="resource-item">
+            <div><div class="name">Dune Spellbook Docs</div><div class="desc">Tabel-tabel pre-built yang bikin query jauh lebih mudah</div></div>
+            <span class="resource-tag tag-doc">DOCS</span>
+          </div>
+          <div class="resource-item">
+            <div><div class="name">Kaggle Learn (Python & Pandas)</div><div class="desc">Kursus Python gratis, interaktif, hands-on — tidak perlu install apapun</div></div>
+            <span class="resource-tag tag-free">FREE</span>
+          </div>
+          <div class="resource-item">
+            <div><div class="name">Cursor IDE</div><div class="desc">AI-powered code editor — bikin Python 10x lebih mudah untuk non-coder</div></div>
+            <span class="resource-tag tag-tool">TOOL</span>
+          </div>
+          <div class="resource-item">
+            <div><div class="name">Anthropic Claude API Docs</div><div class="desc">docs.anthropic.com — pelajari cara build simple agent</div></div>
+            <span class="resource-tag tag-doc">DOCS</span>
+          </div>
+          <div class="resource-item">
+            <div><div class="name">LangChain Academy (gratis)</div><div class="desc">Kursus resmi LangChain, foundations of AI agents</div></div>
+            <span class="resource-tag tag-free">FREE</span>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="proj-title">🔍 Proyek 3-A: On-Chain Wallet Intelligence</div>
+          <p>Tulis SQL query Dune untuk track aktivitas wallet "smart money" di 1 protokol. Identifikasi pattern: kapan mereka deposit/withdraw, pair apa yang mereka favorit. Interpretasi dengan Claude. Buat thread Twitter dari hasilnya.</p>
+        </div>
+        <div class="project-card">
+          <div class="proj-title">🤖 Proyek 3-B: Mini DeFi Research Agent</div>
+          <p>Bangun Python script yang: (1) pull TVL data dari DeFiLlama API, (2) kirim ke Claude API dengan prompt analisis, (3) output summary ke file atau Telegram bot. Pakai Cursor untuk bantu coding. Ini AI agent pertamamu!</p>
+        </div>
+
+        <div class="sub-card" style="margin:12px 0">
+          <h4>Milestone Checklist</h4>
+          <div class="milestone-row"><div class="check-icon">✓</div>Bisa tulis SQL query custom di Dune tanpa copas penuh</div>
+          <div class="milestone-row"><div class="check-icon">✓</div>Punya Python script yang pull data DeFiLlama otomatis</div>
+          <div class="milestone-row"><div class="check-icon">✓</div>Berhasil build 1 simple AI agent yang fungsional</div>
+          <div class="milestone-row"><div class="check-icon">✓</div>Thread Twitter tentang on-chain finding mendapat engagement</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== FASE 4 ========== -->
+  <div id="phase4">
+    <div class="section-label">Fase 4</div>
+    <div class="phase-card">
+      <div class="phase-header" onclick="togglePhase(this)">
+        <div class="phase-badge badge-4">FASE 4</div>
+        <div class="phase-title-block">
+          <h3>DeFAI & AI Agents</h3>
+          <p>Yield automation, risk assessment, portfolio management dengan AI</p>
+        </div>
+        <div class="phase-meta">
+          <div class="duration-tag">2–3 bulan</div>
+          <div class="toggle-icon">▾</div>
+        </div>
+      </div>
+      <div class="phase-body">
+        <div class="goal-box" style="border-left-color: var(--gold)">
+          <strong>TUJUAN FASE</strong>
+          Kamu memahami lanskap DeFAI (DeFi + AI) di 2026: protokol AI agents, autonomous DeFi strategies, risk assessment systems, dan bisa build atau menggunakan AI agents untuk use case DeFi nyata.
+        </div>
+
+        <div class="warning-box">
+          <strong>⚠ PENTING SEBELUM FASE INI</strong>
+          <ul>
+            <li>Selalu gunakan testnet (Sepolia, Base Sepolia) untuk coba autonomous strategies.</li>
+            <li>Jangan deploy agent di mainnet dengan dana besar sebelum test ekstensif.</li>
+            <li>AI agents di DeFi bisa kehilangan dana karena bug atau edge cases — treat ini sebagai eksperimen edukasi.</li>
+          </ul>
+        </div>
+
+        <div class="grid-2">
+          <div class="sub-card">
+            <h4>Landscape DeFAI 2026</h4>
+            <ul>
+              <li>AI agents di DeFi: Olas Network, Griffain, Brian AI</li>
+              <li>Intent-based protocols (1inch Fusion, CoW)</li>
+              <li>LLM-powered portfolio management</li>
+              <li>Autonomous yield optimization</li>
+              <li>AI-driven risk monitoring</li>
+              <li>On-chain AI inference (Ritual)</li>
+              <li>Agent frameworks: ElizaOS, GAME Protocol</li>
+            </ul>
+          </div>
+          <div class="sub-card">
+            <h4>Build AI Agents untuk DeFi</h4>
+            <ul>
+              <li>ReAct pattern (Reason + Act)</li>
+              <li>Tool calling dengan Claude API</li>
+              <li>Yield monitoring agent</li>
+              <li>Risk alert system</li>
+              <li>Portfolio rebalancing logic</li>
+              <li>Multi-agent setups</li>
+              <li>Agent memory & state management</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="sub-card" style="margin:12px 0">
+          <h4>Resources Terbaik</h4>
+          <div class="resource-item">
+            <div><div class="name">Olas Network Docs & Academy</div><div class="desc">Framework AI agents untuk DeFi, ada tutorial lengkap</div></div>
+            <span class="resource-tag tag-doc">DOCS</span>
+          </div>
+          <div class="resource-item">
+            <div><div class="name">Brian AI (brianknows.org)</div><div class="desc">AI untuk eksekusi DeFi transactions via natural language — pelajari arsitekturnya</div></div>
+            <span class="resource-tag tag-tool">TOOL</span>
+          </div>
+          <div class="resource-item">
+            <div><div class="name">LangChain Tools & Agents Docs</div><div class="desc">Pelajari tool calling, agent executor, memory modules</div></div>
+            <span class="resource-tag tag-doc">DOCS</span>
+          </div>
+          <div class="resource-item">
+            <div><div class="name">Andrew Ng DeepLearning.AI (Agent Courses)</div><div class="desc">Short courses tentang AI agents — ada yang gratis, sangat padat</div></div>
+            <span class="resource-tag tag-free">FREE</span>
+          </div>
+          <div class="resource-item">
+            <div><div class="name">Messari DeFAI Report 2026</div><div class="desc">Landscape overview DeFAI terkini — wajib baca untuk konteks industri</div></div>
+            <span class="resource-tag tag-free">FREE</span>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="proj-title">🌾 Proyek 4-A: Yield Optimization Monitor Agent</div>
+          <p>Build agent yang scan top 10 yield opportunities di DeFiLlama tiap 6 jam, filter berdasarkan kriteriamu (TVL > $50M, APY > 5%, audited), dan kirim summary ke Telegram. Gunakan Python + Claude API + DeFiLlama API. Deploy gratis di Railway atau Render.</p>
+        </div>
+        <div class="project-card">
+          <div class="proj-title">⚡ Proyek 4-B: DeFAI Landscape Research Report</div>
+          <p>Tulis riset mendalam tentang "State of DeFAI 2026" — cover semua protokol/tools utama, analisis use cases mana yang paling promising, risks, dan outlook. Ini bisa jadi cornerstone portfolio kamu. Publish di Mirror.</p>
+        </div>
+
+        <div class="sub-card" style="margin:12px 0">
+          <h4>Milestone Checklist</h4>
+          <div class="milestone-row"><div class="check-icon">✓</div>Bisa jelaskan perbedaan AI agents vs chatbot dalam konteks DeFi</div>
+          <div class="milestone-row"><div class="check-icon">✓</div>Yield monitor agent berjalan otomatis di cloud</div>
+          <div class="milestone-row"><div class="check-icon">✓</div>DeFAI landscape report published dan dapat feedback</div>
+          <div class="milestone-row"><div class="check-icon">✓</div>Familiar dengan minimal 5 DeFAI protokol secara mendalam</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== FASE 5 ========== -->
+  <div id="phase5">
+    <div class="section-label">Fase 5</div>
+    <div class="phase-card">
+      <div class="phase-header" onclick="togglePhase(this)">
+        <div class="phase-badge badge-5">FASE 5</div>
+        <div class="phase-title-block">
+          <h3>Advanced & Portfolio Building</h3>
+          <p>Personal AI DeFi analyst, riset mendalam, job-ready skills</p>
+        </div>
+        <div class="phase-meta">
+          <div class="duration-tag">2–3 bulan</div>
+          <div class="toggle-icon">▾</div>
+        </div>
+      </div>
+      <div class="phase-body">
+        <div class="goal-box" style="border-left-color: #f87171">
+          <strong>TUJUAN FASE</strong>
+          Kamu job-ready sebagai Junior AI-Powered DeFi Analyst: punya portfolio publik yang kuat, personal brand di Twitter/X, bisa deliver nilai nyata ke protokol/VC/fund sebagai analyst atau contributor.
+        </div>
+
+        <div class="grid-2">
+          <div class="sub-card">
+            <h4>Advanced DeFi Analysis</h4>
+            <ul>
+              <li>MEV analysis & implications</li>
+              <li>Cross-chain liquidity fragmentation</li>
+              <li>RWA (Real World Assets) in DeFi</li>
+              <li>Perp DEX mechanics & funding rates</li>
+              <li>Protocol-owned liquidity analysis</li>
+              <li>Institutional DeFi trends</li>
+              <li>Regulatory landscape (global + ID)</li>
+            </ul>
+          </div>
+          <div class="sub-card">
+            <h4>Portfolio & Personal Brand</h4>
+            <ul>
+              <li>GitHub: curated repos & scripts</li>
+              <li>Notion/Mirror: research archive</li>
+              <li>Twitter/X: consistent publishing</li>
+              <li>Dune: public dashboards portfolio</li>
+              <li>LinkedIn: DeFi analyst positioning</li>
+              <li>Apply ke DAO grants & bounties</li>
+              <li>Contribute ke protokol research</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="sub-card" style="margin:12px 0">
+          <h4>Job Hunt Strategy untuk Indonesia</h4>
+          <ul>
+            <li>Target: Remote analyst roles di DeFi protocols (global), VC crypto, atau fintech lokal yang masuk Web3</li>
+            <li>Platform: Crypto Jobs List, Web3 Career, Gitcoin, Remote3.co</li>
+            <li>DAO Contributors: Banyak DAO bayar contributor analyst — mulai dari sini untuk bangun reputasi</li>
+            <li>Freelance: Fiverr/Upwork untuk DeFi research reports</li>
+            <li>Indonesia local: Pintu, Tokocrypto, Indodax — mereka butuh DeFi analysts</li>
+          </ul>
+        </div>
+
+        <div class="project-card">
+          <div class="proj-title">🏗️ Proyek 5-A: Personal AI DeFi Analyst System</div>
+          <p>Build sistem analyst pribadi yang fully AI-augmented: input protokol name → auto-pull data (Dune + DeFiLlama) → AI generate draft analysis → kamu review & enhance → publish. Dokumentasikan sistemnya di GitHub. Ini proof of concept yang powerful.</p>
+        </div>
+        <div class="project-card">
+          <div class="proj-title">🎯 Proyek 5-B: 10-Report Portfolio Sprint</div>
+          <p>Dalam 8 minggu, publish 10 research reports di Mirror/Substack. Mix topik: protocol deep-dives, sector analysis, on-chain findings, DeFAI commentary. Consistency > perfection. Ini yang akan dilihat recruiter dan DAO.</p>
+        </div>
+
+        <div class="sub-card" style="margin:12px 0">
+          <h4>Milestone = Junior AI DeFi Analyst</h4>
+          <div class="milestone-row"><div class="check-icon">✓</div>10+ published research reports yang bisa diakses publik</div>
+          <div class="milestone-row"><div class="check-icon">✓</div>Public GitHub dengan Python scripts & agent projects</div>
+          <div class="milestone-row"><div class="check-icon">✓</div>Twitter/X dengan 500+ followers yang engage dengan research</div>
+          <div class="milestone-row"><div class="check-icon">✓</div>Pernah dapat paid bounty atau DAO contribution</div>
+          <div class="milestone-row"><div class="check-icon">✓</div>Bisa onboard ke interview dan jelaskan methodologi riset</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== EXTRAS ========== -->
+  <div id="extras">
+    <div class="section-label">AI Tools Terbaik untuk DeFi 2026</div>
+
+    <div class="tools-grid">
+      <div class="tool-card">
+        <div class="tool-name">Claude (Anthropic)</div>
+        <div class="tool-use">Deep research, long-form analysis, coding assistant, prompt engineering</div>
+        <div class="tool-tier tier-must">MUST HAVE</div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-name">Perplexity AI</div>
+        <div class="tool-use">Real-time research dengan citations, bagus untuk news & fact-checking</div>
+        <div class="tool-tier tier-must">MUST HAVE</div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-name">Cursor IDE</div>
+        <div class="tool-use">AI code editor — wajib untuk non-coder yang mau Python/SQL</div>
+        <div class="tool-tier tier-must">MUST HAVE</div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-name">Grok (xAI)</div>
+        <div class="tool-use">Real-time Twitter/X data, bagus untuk sentiment & alpha hunting</div>
+        <div class="tool-tier tier-rec">RECOMMENDED</div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-name">NotebookLM</div>
+        <div class="tool-use">Synthesize multiple PDFs/docs — ideal untuk riset panjang</div>
+        <div class="tool-tier tier-rec">RECOMMENDED</div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-name">LangChain</div>
+        <div class="tool-use">Framework untuk build AI agents — Python-based</div>
+        <div class="tool-tier tier-adv">ADVANCED</div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-name">Dune AI (Wizard)</div>
+        <div class="tool-use">Natural language → SQL di Dune, massive time saver</div>
+        <div class="tool-tier tier-must">MUST HAVE</div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-name">Brian AI</div>
+        <div class="tool-use">AI untuk eksekusi dan riset DeFi transactions</div>
+        <div class="tool-tier tier-rec">RECOMMENDED</div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-name">Olas Network</div>
+        <div class="tool-use">Platform untuk deploy AI agents on-chain</div>
+        <div class="tool-tier tier-adv">ADVANCED</div>
+      </div>
+    </div>
+
+    <div class="section-label">Skill yang Tahan AI (Future-Proof)</div>
+
+    <div class="immune-grid">
+      <div class="immune-card">
+        <div class="ic-title">🧠 Judgment & Context</div>
+        <p>AI bisa pull data, tapi kamu yang tahu "ini bullshit atau legit." Kemampuan mendeteksi rug pull, memahami motivasi tim, dan baca situasi pasar — ini tetap human skill.</p>
+      </div>
+      <div class="immune-card">
+        <div class="ic-title">🔗 Network & Relationships</div>
+        <p>Akses ke insider info, early deals, dan private research pools datang dari network manusia. AI tidak bisa bikin kamu dikenal di komunitas DeFi.</p>
+      </div>
+      <div class="immune-card">
+        <div class="ic-title">📐 Framework Building</div>
+        <p>Merancang metode evaluasi baru, risk framework original, atau scoring system yang belum pernah ada — ini kreativitas analitis yang AI replicate dengan susah.</p>
+      </div>
+      <div class="immune-card">
+        <div class="ic-title">🎯 Narrative Craft</div>
+        <p>Bisa jelaskan complex DeFi concept ke investor awam, atau tulis riset yang <em>benar-benar dibaca</em> orang — bukan hanya AI-generated walls of text.</p>
+      </div>
+      <div class="immune-card">
+        <div class="ic-title">⚡ Real-time Decision Making</div>
+        <p>Saat exploit terjadi, market crash, atau opp muncul dalam 30 menit — kecepatan dan judgment manusia di bawah tekanan tetap critical.</p>
+      </div>
+      <div class="immune-card">
+        <div class="ic-title">🛠️ AI Tool Orchestration</div>
+        <p>Ironis tapi benar: skill <em>menggunakan AI secara efektif</em> adalah skill yang AI tidak bisa gantikan. Orang yang tahu cara "direct the orchestra" tetap in demand.</p>
+      </div>
+    </div>
+
+    <div class="section-label">Tips untuk Orang Indonesia</div>
+
+    <div class="sub-card" style="margin:0 0 12px">
+      <h4>💰 Belajar Murah & Efisien</h4>
+      <ul>
+        <li>Hampir semua resources terbaik 100% gratis — YouTube, docs, Discord protokol</li>
+        <li>Claude.ai free tier sudah cukup untuk Fase 0–2. Upgrade ke Pro ($20/bln ≈ Rp320rb) baru di Fase 3+</li>
+        <li>Gunakan VPN kalau ada akses geo-blocked</li>
+        <li>GitHub Student Pack gratis kalau masih mahasiswa — ada banyak tools berbayar gratis</li>
+        <li>Google Colab untuk Python — gratis, tidak perlu laptop kuat</li>
+      </ul>
+    </div>
+
+    <div class="sub-card" style="margin:0 0 12px">
+      <h4>🇮🇩 Komunitas Lokal</h4>
+      <ul>
+        <li>Telegram: Indonesian Blockchain Community, DeFi Indonesia, Crypto ID</li>
+        <li>Discord: IDN Crypto (banyak alpha lokal di sini)</li>
+        <li>Twitter/X: follow @pintuindonesia, @tokocrypto, dan analyst Indo yang aktif</li>
+        <li>Meetup: ETH Jakarta, Blockchain Day ID — networking penting untuk karir</li>
+        <li>Program lokal: Pintu Academy, Indodax Academy — bagus untuk context pasar lokal</li>
+      </ul>
+    </div>
+
+    <div class="sub-card" style="margin:0 0 12px">
+      <h4>🌐 Bahasa Inggris</h4>
+      <ul>
+        <li>Semua resources premium ada dalam bahasa Inggris — investasi terbesar kamu adalah improve reading comprehension</li>
+        <li>Gunakan Claude untuk translate + simplify teks teknikal yang sulit</li>
+        <li>Tulis risetmu dalam bahasa Inggris sejak awal — ini mandatory untuk reach global audience</li>
+        <li>Komunitas Discord protokol internasional — lurk dulu, lama-lama berani aktif</li>
+      </ul>
+    </div>
+
+    <div class="section-label">Estimasi Waktu Total</div>
+
+    <div class="timeline-summary">
+      <div class="timeline-row" style="background: rgba(0,229,255,0.03)">
+        <div class="tl-phase" style="color:var(--accent); font-size:14px">TARGET</div>
+        <div class="tl-name" style="font-weight:600">Junior AI-Powered DeFi Analyst</div>
+        <div class="tl-duration" style="color:var(--accent); font-size:14px; font-weight:700">12–18 bln</div>
+        <div class="tl-bar-wrap" style="width:100px"><div class="tl-bar" style="width:100%; background:linear-gradient(90deg,var(--accent),var(--accent2))"></div></div>
+      </div>
+    </div>
+
+    <div class="tip-box">
+      <strong>📌 CATATAN REALISTIS</strong>
+      12 bulan adalah target <em>agresif</em> kalau konsisten 10–15 jam/minggu dan aktif publish sejak Fase 1. 18 bulan adalah target <em>realistic</em> dengan kehidupan mahasiswa yang padat. Yang paling penting: mulai sekarang, konsisten, dan jangan perfectionism — publish riset imperfect lebih baik daripada tidak publish sama sekali. DeFi bergerak cepat, belajar di lapangan jauh lebih efektif daripada nunggu "siap."
+    </div>
+
+    <div class="warning-box" style="margin-top:20px">
+      <strong>⚠ FINAL REMINDER — RISKS IN DEFI</strong>
+      <ul>
+        <li>Smart contract risk: kode bisa di-exploit, bahkan protokol yang sudah audit sekalipun</li>
+        <li>Rug pull & exit scam: masih sangat umum di protokol baru/anon team</li>
+        <li>Regulatory risk: regulasi crypto Indonesia masih berkembang — stay updated</li>
+        <li>AI hallucination: jangan percaya bulat-bulat output AI tanpa verifikasi on-chain</li>
+        <li>Selalu mulai dengan dana yang kamu siap kehilangan 100% saat eksperimen live</li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <p>Roadmap ini dibuat untuk <strong>Cerulean</strong> — AI-Powered DeFi Analyst Journey 2026</p>
+  <p style="margin-top:8px">Built with ❤️ by <strong>Chloe</strong> (Claude Sonnet 4.6)</p>
+  <p style="margin-top:8px; font-size:11px; color:#334155">Not financial advice. DYOR. Start small. Stay safe.</p>
+</footer>
+
+<script>
+  function togglePhase(header) {
+    const card = header.parentElement;
+    card.classList.toggle('open');
+  }
+
+  function scrollTo(id) {
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+    event.target.classList.add('active');
+  }
+
+  // Open first phase on load
+  document.addEventListener('DOMContentLoaded', () => {
+    // phase0 already open via class
+  });
+
+  // Highlight active nav on scroll
+  const sections = ['overview','phase0','phase1','phase2','phase3','phase4','phase5','extras'];
+  const navBtns = document.querySelectorAll('.nav-btn');
+
+  window.addEventListener('scroll', () => {
+    let current = 'overview';
+    sections.forEach(id => {
+      const el = document.getElementById(id);
+      if (el && el.getBoundingClientRect().top < 120) current = id;
+    });
+    navBtns.forEach((btn, i) => {
+      btn.classList.toggle('active', sections[i] === current);
+    });
+  });
+</script>
+</body>
+</html>
